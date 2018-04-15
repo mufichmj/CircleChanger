@@ -92,7 +92,7 @@ class CircleChanger(object):
         # --------------------------------------------------------------
 
         ################################################################
-        # TODO: 2.
+        # DONE: 2.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the   run_test_init   function (below).
         #   Third, implement and test this method.
@@ -101,6 +101,11 @@ class CircleChanger(object):
         # the SPECIFICATION of the method.  That is why you read the
         # TEST function before implementing the method that it tests.
         ################################################################
+        self.circle = rg.Circle(rg.Point(x, y), radius)
+        self.circle.fill_color = fill_color
+        self.colors = colors
+
+
 
     def __repr__(self):
         """
@@ -192,7 +197,7 @@ class CircleChanger(object):
             :type point: rg.Point
         """
         ################################################################
-        # TODO: 3.
+        # DONE: 3.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the   run_test_get_distance_from   function
         #   (below).  Third, implement and test this method.
@@ -201,6 +206,9 @@ class CircleChanger(object):
         #   of the    rg.Point     class to compute this distance.
         #   NO CREDIT if you use the distance formula here.
         ################################################################
+        distance = rg.Point.get_distance_from(self.circle.center, point)
+
+        return distance
 
     def swell_or_shrink_once(self, amount_to_swell_or_shrink):
         """
@@ -265,6 +273,16 @@ class CircleChanger(object):
         #   Simply   ** ASK FOR HELP **
         #            if this does not make sense to you.
         ################################################################
+
+        self.circle.radius = self.circle.radius + amount_to_swell_or_shrink
+        if self.circle.radius < 1:
+            self.circle.radius = 1
+        r_number = random.randrange(3, 16)
+        self.circle.outline_thickness = r_number
+        r_color = random.randrange(len(self.colors))
+        self.circle.fill_color = self.colors[r_color]
+
+
 
     def swell_or_shrink_repeatedly(self,
                                    amount_to_swell_or_shrink,
